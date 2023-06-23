@@ -8,14 +8,15 @@ import ModelY from "../components/ModelY.astro";
 <Layout title="Tesla CLON web">
 	<LandingHeader />
 	<main
-		class="relative w-full h-screen overflow-auto overflow-x-hidden snap-y snap-mandatory"
+		class={`
+		relative
+		w-full
+		h-screen
+		overflow-auto
+		overflow-x-hidden
+		snap-y snap-mandatory 
+		`}
 	>
-		<div class="snap-center">
-			<HeroSection />
-		</div>
-		<div class="snap-center">
-			<ModelY />
-		</div>
 		<div class="snap-center">
 			<HeroSection />
 		</div>

@@ -1,0 +1,59 @@
+---
+interface Props {
+  color: string;
+  title: string;
+  subtitles: string[];
+}
+
+const { color, title, subtitles }: Props = Astro.props;
+const textColor = `text-${color}`;
+---
+
+<section
+  class={`
+  landing-section 
+  text-center
+  bg-black
+  h-screen 
+  w-screen
+  overflow-hidden
+  relative
+  `}
+  data-header-color={color}
+>
+  <div class="flex flex-col h-full z-30 relative">
+    <header>
+      <h2
+        class={`
+         ${textColor}
+         pt-[10vh]
+         text-[40px]
+         font-medium
+         `}
+      >
+        {title}
+      </h2>
+      {
+        subtitles.map((subtitle) => {
+          return <p class={`${textColor} text-sm`}>{subtitle}</p>;
+        })
+      }
+    </header>
+    <footer
+      class={`
+          flex
+          flex-col
+          flex-grow 
+          flex-nowrap
+          justify-end
+          text-white
+          pb-20
+          `}
+    >
+      <slot name="footer" />
+    </footer>
+    <div class="absolute top-0 bottom-0 h-full w-full -z-10">
+      <slot name="background" />
+    </div>
+  </div>
+</section>

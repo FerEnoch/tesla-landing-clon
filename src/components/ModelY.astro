@@ -1,37 +1,50 @@
-<section
-  class="landing-section text-center bg-black h-screen w-screen overflow-hidden relative"
-  data-header-color="black"
+---
+import Section from "./Section.astro";
+---
+
+<Section
+  title="Model Y"
+  subtitles={["Starting at $40,240", "After Federal Tax Credit"]}
+  color="black"
 >
-  <div class="flex flex-col h-full z-30 relative">
-    <header>
-      <h2 class="text-black pt-[10vh] text-[40px] font-medium">Model Y</h2>
-      <p class="text-black text-sm">Starting at $40,240</p>
-      <p class="text-black text-sm">After Federal Tax Credit</p>
-    </header>
-    <footer
-      class="flex flex-col flex-grow flex-nowrap justify-end text-white pb-20"
+  <div slot="footer" class="flex gap-x-4 justify-center">
+    <a
+      href="#"
+      class={`
+         bg-white/50
+         border 
+         rounded
+         text-gray-800
+         font-medium 
+         text-sm
+         px-24 
+         py-2
+         inline-block
+         `}
     >
-      <div class="flex gap-x-4 justify-center">
-        <a
-          href="#"
-          class="bg-white/50 border rounded text-gray-800 font-medium text-sm px-24 py-2 inline-block"
-        >
-          Explore Inventory
-        </a>
-        <a
-          href="#"
-          class="bg-black/60 border rounded font-medium text-sm px-24 py-2 inline-block text-white"
-        >
-          Custom Order
-        </a>
-      </div>
-    </footer>
+      Explore Inventory
+    </a>
+    <a
+      href="#"
+      class={`
+             bg-black/60
+               border
+               rounded
+               font-medium
+               text-sm
+               px-24
+               py-2
+               inline-block 
+             text-white
+            `}
+    >
+      Custom Order
+    </a>
   </div>
-  <div class="absolute top-0 bottom-0 h-full w-full z-10">
-    <img
-      src="/Model-Y-Global-Desktop.avif"
-      alt="TESLA Model Y"
-      class="h-full w-full object-cover"
-    />
-  </div>
-</section>
+  <img
+    slot="background"
+    src="/Model-Y-Global-Desktop.avif"
+    alt="TESLA Model Y"
+    class="h-full w-full object-cover"
+  />
+</Section>

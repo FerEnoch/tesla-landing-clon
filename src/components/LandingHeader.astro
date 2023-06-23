@@ -3,15 +3,36 @@ import Logo from "../components/Logo.astro";
 ---
 
 <header
-  class="py-4 px-10 flex items-center justify-between fixed top-0 w-full z-40 text-white"
   id="landing-header"
+  class={`
+  py-4
+  px-10
+  flex
+  items-center 
+  justify-between 
+  fixed 
+  top-0
+  w-full
+  z-40
+  text-white
+  `}
 >
   <div class="flex flex-grow basis-0 justify-start">
     <Logo />
   </div>
   <nav class="flex flex-grow justify-center">
     <ul
-      class="flex text-md [&>li>a]:font-medium [&>li>a]:text-current font-bold [&>li>a]:inline-block [&>li>a]:px-2 [&>li>a]:py-2"
+      class={`
+      text-md 
+      font-bold 
+      flex 
+      [&>li>a]:transition-colors [&>li>a]:duration-500
+      [&>li>a]:text-current 
+      [&>li>a]:py-2 
+      [&>li>a]:px-2
+      [&>li>a]:inline-block 
+      [&>li>a]:font-medium 
+      `}
     >
       <li><a href="#">Model S</a></li>
       <li><a href="#">Model 3</a></li>
@@ -24,33 +45,77 @@ import Logo from "../components/Logo.astro";
   </nav>
   <nav class="flex flex-grow justify-end basis-0">
     <ul
-      class="flex text-sm [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-2 [&>li>a]:py-2"
+      class={`
+      text-sm 
+      flex 
+      [&>li>a]:transition-colors [&>li>a]:duration-500
+      [&>li>a]:py-2 
+      [&>li>a]:px-2
+      [&>li>a]:inline-block 
+      [&>li>a]:font-medium
+      `}
     >
       <li><a href="#">Shop</a></li>
       <li><a href="#">Account</a></li>
       <li><a href="#">Menu</a></li>
     </ul>
   </nav>
-</header>
 
-<script>
-  const header = document.querySelector("#landing-header") as HTMLHeadElement;
-  const observerOptions = {
-    root: null,
-    rootMargin: "0px",
-    threshold: 0.9,
-  };
+  <div
+    id="menu-backdrop"
+    class={`
+    absolute
+    bg-black/5
+    backdrop-blur-lg
+    rounded
+    translate-x-[var(--left)] translate-y-[var(--top)]
+    left-0 top-0
+    w-[var(--width)] h-[var(--height)]
+    transition-all duration-400 ease-in-out delay-100
+    opacity-0
+    -z-10
+    `}
+  >
+  </div>
+  <script>
+    const listItem = document.querySelectorAll("#landing-header li");
+    const menuBackdrop = document.querySelector("#menu-backdrop");
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      const { isIntersecting } = entry;
-      if (isIntersecting) {
-        const dataColor = entry.target.getAttribute("data-header-color");
-        header.style.color = dataColor;
-      }
+    listItem.forEach((item) => {
+      item.addEventListener("mouseenter", () => {
+        const { left, top, width, height } = item.getBoundingClientRect();
+        menuBackdrop.style.setProperty("--left", `${left}px`);
+        menuBackdrop.style.setProperty("--top", `${top}px`);
+        menuBackdrop.style.setProperty("--width", `${width}px`);
+        menuBackdrop.style.setProperty("--height", `${height}px`);
+        menuBackdrop.style.opacity = "1";
+        menuBackdrop.style.visibility = "visible";
+      });
+      item.addEventListener("mouseleave", ({ target }) => {
+        menuBackdrop.style.opacity = "0";
+        menuBackdrop.style.visibility = "didden";
+      });
     });
-  }, observerOptions);
+  </script>
+  <script>
+    const header = document.querySelector("#landing-header");
+    const observerOptions = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.9,
+    };
 
-  const sections = document.querySelectorAll(".landing-section");
-  sections.forEach((section) => observer.observe(section));
-</script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const { isIntersecting } = entry;
+        if (isIntersecting) {
+          const dataColor = entry.target.getAttribute("data-header-color");
+          header.style.color = dataColor;
+        }
+      });
+    }, observerOptions);
+
+    const sections = document.querySelectorAll(".landing-section");
+    sections.forEach((section) => observer.observe(section));
+  </script>
+</header>

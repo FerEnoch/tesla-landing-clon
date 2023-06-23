@@ -1,33 +1,39 @@
-<section
-  class="landing-section text-center bg-black h-screen w-screen overflow-hidden relative"
-  data-header-color="white"
+---
+import Section from "./Section.astro";
+---
+
+<Section
+  title="Experience Tesla"
+  subtitles={["Schedule a Demo Drive Today"]}
+  color="white"
 >
-  <div class="flex flex-col h-full z-30 relative">
-    <header>
-      <h2 class="text-white pt-[10vh] text-[40px] font-medium">
-        Experience Tesla
-      </h2>
-      <p class="text-white text-sm">Schedule a Demo Drive Today</p>
-    </header>
-    <footer
-      class="flex flex-col flex-grow flex-nowrap justify-end text-white pb-20"
+  <div slot="footer">
+    <a
+      href="#"
+      class={`
+            border-[1px]
+            border-white
+            bg-white/5
+            backdrop-blur-sm
+            rounded 
+            font-medium 
+            text-sm 
+            px-24
+            py-2
+            inline-block
+            hover:text-black
+            hover:bg-white 
+            transition-colors
+            `}
     >
-      <div>
-        <a
-          href="#"
-          class="border-[1px] border-white bg-white/5 backdrop-blur-sm rounded font-medium text-sm px-24 py-2 inline-block hover:text-black hover:bg-white transition-colors"
-        >
-          Demo Drive
-        </a>
-      </div>
-    </footer>
+      Demo Drive
+    </a>
   </div>
-  <div class="absolute top-0 bottom-0 h-full w-full z-10">
-    <video
-      class="object-center object-cover h-full w-full"
-      autoplay
-      muted
-      loop
-      src="/video.webm"></video>
-  </div>
-</section>
+  <video
+    slot="background"
+    class="object-center object-cover h-full w-full"
+    autoplay
+    muted
+    loop
+    src="/video.webm"></video>
+</Section>
