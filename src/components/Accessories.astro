@@ -1,0 +1,38 @@
+---
+import Section from "./Section.astro";
+import LandingFooter from "./LandingFooter.astro";
+---
+
+<Section id="shop" title="Accessories" subtitles={[""]} color="black">
+  <div slot="footer" class="pb-2 flex flex-col gap-10">
+    <div>
+      <a
+        href="#"
+        class={`
+            backdrop-blur-sm
+            bg-black
+            border-[1px]
+            border-black
+            font-medium 
+            hover:bg-black 
+            hover:text-white
+            inline-block
+            px-24
+            py-2
+            rounded 
+            text-sm 
+            transition-colors
+            `}
+      >
+        Shop Now
+      </a>
+    </div>
+    <LandingFooter />
+  </div>
+  <img
+    slot="background"
+    src="/Desktop_Accessories.avif"
+    alt="TESLA Model Y"
+    class="h-full w-full object-cover"
+  />
+</Section>

@@ -1,0 +1,57 @@
+---
+import Section from "./Section.astro";
+---
+
+<Section
+  id="model3"
+  title="Model 3"
+  subtitles={["Starting at $32,740", "After Federal Tax Credit"]}
+  color="black"
+>
+  <div slot="footer" class="flex flex-col gap-5">
+    <div class="flex gap-x-4 justify-center">
+      <a
+        href="#"
+        class={`
+       bg-white/50
+       rounded
+       text-gray-800
+       font-medium 
+       text-sm
+       px-24 
+       py-2
+       inline-block
+       `}
+      >
+        Explore Inventory
+      </a>
+      <a
+        href="#"
+        class={`
+           bg-black/60
+             rounded
+             font-medium
+             text-sm
+             px-24
+             py-2
+             inline-block 
+           text-white
+          `}
+      >
+        Custom Order
+      </a>
+    </div>
+    <div class="text-gray-800 pb-8 text-sm">
+      <p>
+        3 months free Supercharging when you take delivery of a new Inventory
+        vehicle by June 30
+      </p>
+    </div>
+  </div>
+  <img
+    slot="background"
+    src="/Model-3-Global-Desktop.avif"
+    alt="TESLA Model Y"
+    class="h-full w-full object-cover"
+  />
+</Section>

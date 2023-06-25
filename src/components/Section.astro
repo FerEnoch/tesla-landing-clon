@@ -3,13 +3,15 @@ interface Props {
   color: string;
   title: string;
   subtitles: string[];
+  id: string;
 }
 
-const { color, title, subtitles }: Props = Astro.props;
+const { color, title, subtitles, id }: Props = Astro.props;
 const textColor = `text-${color}`;
 ---
 
 <section
+  id={id}
   class={`
   landing-section 
   text-center
@@ -34,9 +36,10 @@ const textColor = `text-${color}`;
         {title}
       </h2>
       {
-        subtitles.map((subtitle) => {
-          return <p class={`${textColor} text-sm`}>{subtitle}</p>;
-        })
+        subtitles &&
+          subtitles.map((subtitle) => {
+            return <p class={`${textColor} text-sm`}>{subtitle}</p>;
+          })
       }
     </header>
     <footer
@@ -47,7 +50,7 @@ const textColor = `text-${color}`;
           flex-nowrap
           justify-end
           text-white
-          pb-20
+          pb-0
           `}
     >
       <slot name="footer" />
